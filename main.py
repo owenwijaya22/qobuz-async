@@ -11,10 +11,11 @@ def download(url):
     qobuz.handle_url(url)
     
 qobuz = QobuzDL(quality=27)
+qobuz.directory = r"C:\Users\Kaiden\Music"
 qobuz.get_tokens()
 qobuz.initialize_client(data["email"], data["password"], qobuz.app_id, qobuz.secrets)
 
-urls = [input("Enter URL: ") for _ in range(input("How many songs:"))]
+urls = [input("Enter URL: ") for _ in range(int(input("How many songs:")))]
 threads = [threading.Thread(target=download, args=(url,)) for url in urls]
 for thread in threads:
     thread.start()

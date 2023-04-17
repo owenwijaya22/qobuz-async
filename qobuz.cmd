@@ -1,0 +1,1 @@
+py C:\Users\Kaiden\vscode\projects\qobuz\main.py
