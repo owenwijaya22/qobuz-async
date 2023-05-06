@@ -15,6 +15,8 @@ with open("config.json", "r") as f:
 def download(url):
     qobuz.handle_url(url)
 
+def open_directory():
+    os.startfile(directory_var.get())
 
 def start_downloading():
     qobuz.directory = directory_var.get()
@@ -82,6 +84,9 @@ clear_button.grid(row=2, column=0, sticky="w", pady=5)
 
 paste_button = tk.Button(frame, text="Paste from clipboard", command=paste_urls)
 paste_button.grid(row=2, column=0, padx=(80, 0), sticky="w", pady=5)
+
+open_directory_button = tk.Button(frame, text="Open Directory", command=open_directory)
+open_directory_button.grid(row=2, column=0, padx=(160, 0), sticky='w', pady=5)
 
 # login
 qobuz.get_tokens()
