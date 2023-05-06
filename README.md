@@ -11,8 +11,11 @@ Download `.flac` music from Qobuz, which supports parallel downloads. Metadata f
 - **Parallel Downloads**: Download multiple files simultaneously, saving time.
 - **Album Cover Metadata Support**: Automatically includes album cover metadata in the downloaded files.
 - **No Account Required**: No need to have a Qobuz account, as it is provided in the package along with the config files.
-![GUI Preview](https://imgur.com/a/2SHlyc4 "Preview")
+
+![GUI Preview](https://user-images.githubusercontent.com/67509348/236596246-62a7cbd9-faad-4153-8f87-dc5b2a79a0c4.png)
+
 
 ## Fun Fact
+
 
 I use this program daily!
