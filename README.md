@@ -4,7 +4,7 @@ Download `.flac` music from Qobuz, which supports parallel downloads. Metadata f
 
 ## Features
 
-- **Browse and remember download directory**: Easily set the download directory and the application remembers your preferences.
+- **Browse and remember Download Directory**: Easily set the download directory and the application remembers your preferences.
 - **Paste from Clipboard**: Quickly paste URLs from the clipboard into the application.
 - **Clear URLs**: Conveniently clear the list of download URLs with a single click.
 - **Parallel Downloads**: Download multiple files simultaneously, saving time.
