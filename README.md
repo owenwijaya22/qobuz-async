@@ -1,6 +1,8 @@
 # Qobuz Downloader with GUI
 
-Download `.flac` music from Qobuz, which supports parallel downloads. Metadata for album cover is also supported. Comes with a convenient GUI that offers various features, making downloading music from Qobuz easier and faster.
+Scrape and download `.flac` music from Qobuz, asynchronously.
+<br>
+Comes with a convenient GUI that offers various features, making the whole process much easier and faster.
 
 ## Features
 
