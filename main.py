@@ -92,7 +92,7 @@ open_directory_button.grid(row=4, column=1, sticky='w', pady=5)
 # login
 qobuz.get_tokens()
 qobuz.initialize_client(
-    "antwuan@meantodeal.com", "antwuan@A1", qobuz.app_id, qobuz.secrets
+    data["email"], data["password"] , qobuz.app_id, qobuz.secrets
 )
 
 root.mainloop()
