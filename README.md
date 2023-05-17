@@ -1,10 +1,22 @@
-# qobuz
-Download .flac music from qobuz which supports parallel downloads. Metadata for album cover is also supported.
+# Qobuz Downloader with GUI
+
+Scrape and download `.flac` music from Qobuz, asynchronously.
 <br>
-With GUI, with various features like browse download directory and remembers the setting, paste from clipboard, and also clear the urls entries so that you don't have to do it manually.
-<br>
-Provided with GUI!
-<br>
-No need any account, as I provided the qobuz account in the .exe package, and even gave you the config files.
-<br>
-Fun fact: I use this program daily!
+Comes with a convenient GUI that offers various features, making the whole process much easier and faster.
+
+## Features
+
+- **Browse and remember Download Directory**: Easily set the download directory and the application remembers your preferences.
+- **Paste from Clipboard**: Quickly paste URLs from the clipboard into the application.
+- **Clear URLs**: Conveniently clear the list of download URLs with a single click.
+- **Parallel Downloads**: Download multiple files simultaneously, saving time.
+- **Album Cover Metadata Support**: Automatically includes album cover metadata in the downloaded files.
+- **No Account Required**: No need to have a Qobuz account, as it is provided in the package along with the config files.
+
+![GUI Preview](https://user-images.githubusercontent.com/67509348/236596246-62a7cbd9-faad-4153-8f87-dc5b2a79a0c4.png)
+
+
+## Fun Fact
+
+
+I use this program daily!
