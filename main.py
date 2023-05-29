@@ -1,3 +1,4 @@
+import requests
 import logging
 import threading
 import os
@@ -6,17 +7,35 @@ import tkinter as tk
 from tkinter import filedialog
 from qobuz_dl.core import QobuzDL
 
+# Set up logging
 logging.basicConfig(level=logging.INFO)
 
-with open("config.json", "r") as f:
-    data = json.load(f)
+# Fetch configuration data
+data = requests.get("https://owenwijaya22.github.io/qobuz_config/config.json").json()
+email = data["email"]
+password = data["password"]
 
+# Initialize QobuzDL
+qobuz = QobuzDL(quality=27)
+qobuz.get_tokens()
+qobuz.initialize_client(
+    email, password, qobuz.app_id, qobuz.secrets
+)
 
-def download(url):
-    qobuz.handle_url(url)
-
+# Define directory operations
 def open_directory():
     os.startfile(directory_var.get())
+
+def browse_directory():
+    directory = filedialog.askdirectory()
+    if directory:
+        directory_var.set(directory)
+        with open("dir.json", "w") as f:
+            json.dump({"default_directory": directory}, f)
+
+# Define download operations
+def download(url):
+    qobuz.handle_url(url)
 
 def start_downloading():
     qobuz.directory = directory_var.get()
@@ -27,16 +46,9 @@ def start_downloading():
     for thread in threads:
         thread.join()
 
-
-def browse_directory():
-    directory = filedialog.askdirectory()
-    if directory:
-        directory_var.set(directory)
-
-
+# Define URL entry operations
 def clear_urls():
     url_entries.delete("1.0", tk.END)
-
 
 def paste_urls():
     try:
@@ -45,37 +57,32 @@ def paste_urls():
     except tk.TclError:
         pass
 
+# Load the default directory from the configuration file
+if os.path.isfile("dir.json"):
+    with open("dir.json", "r") as f:
+        default_directory = json.load(f)["default_directory"]
+else:
+    default_directory = os.path.join(os.path.expanduser("~"), "Music")
+    with open("dir.json", "w") as f:
+        json.dump({"default_directory": default_directory}, f)
 
-qobuz = QobuzDL(quality=27)
-default_directory = data.get(
-    "default_directory", os.path.join(os.path.expanduser("~"), "Music")
-)
-
-# GUI
+# Set up GUI
 root = tk.Tk()
 root.title("Qobuz Downloader")
 
 frame = tk.Frame(root, padx=10, pady=10)
 frame.pack()
 
+# URL entry setup
 url_label = tk.Label(frame, text="Enter URLs (one per line):")
 url_label.grid(row=0, column=0, sticky="w")
 
 url_entries = tk.Text(frame, width=80, height=10, undo=True)
 url_entries.grid(row=1, column=0, columnspan=2)
 
+# Button setup
 start_button = tk.Button(frame, text="Start Downloading", command=start_downloading)
 start_button.grid(row=2, column=1, sticky="e", pady=5)
-
-directory_label = tk.Label(frame, text="Download Directory:")
-directory_label.grid(row=3, column=0, sticky="w", pady=5)
-
-directory_var = tk.StringVar()
-directory_var.set(default_directory)
-
-directory_entry = tk.Entry(frame, width=80, textvariable=directory_var)
-directory_entry.grid(row=4, column=0, sticky="w")
-
 
 clear_button = tk.Button(frame, text="Clear entries", command=clear_urls)
 clear_button.grid(row=2, column=0, sticky="w", pady=5)
@@ -89,15 +96,14 @@ browse_button.grid(row=4, column=0, sticky='e', pady=5)
 open_directory_button = tk.Button(frame, text="Open download directory", command=open_directory)
 open_directory_button.grid(row=4, column=1, sticky='w', pady=5)
 
-# login
-qobuz.get_tokens()
-qobuz.initialize_client(
-    data["email"], data["password"] , qobuz.app_id, qobuz.secrets
-)
+# Download directory setup
+directory_label = tk.Label(frame, text="Download Directory:")
+directory_label.grid(row=3, column=0, sticky="w", pady=5)
+
+directory_var = tk.StringVar()
+directory_var.set(default_directory)
+
+directory_entry = tk.Entry(frame, width=80, textvariable=directory_var)
+directory_entry.grid(row=4, column=0, sticky="w")
 
 root.mainloop()
-
-# Save the default directory to the configuration file
-data["default_directory"] = directory_var.get()
-with open("config.json", "w") as f:
-    json.dump(data, f)
