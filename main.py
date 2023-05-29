@@ -41,7 +41,7 @@ def clear_urls():
 def paste_urls():
     try:
         clipboard_content = root.clipboard_get()
-        url_entries.insert(tk.END, clipboard_content)
+        url_entries.insert(tk.END, clipboard_content + "\n")
     except tk.TclError:
         pass
 
@@ -61,7 +61,7 @@ frame.pack()
 url_label = tk.Label(frame, text="Enter URLs (one per line):")
 url_label.grid(row=0, column=0, sticky="w")
 
-url_entries = tk.Text(frame, width=80, height=10)
+url_entries = tk.Text(frame, width=80, height=10, undo=True)
 url_entries.grid(row=1, column=0, columnspan=2)
 
 start_button = tk.Button(frame, text="Start Downloading", command=start_downloading)
