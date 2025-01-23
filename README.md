@@ -16,6 +16,33 @@ Comes with a convenient GUI that offers various features, making the whole proce
 
 ![GUI Preview](https://user-images.githubusercontent.com/67509348/236596246-62a7cbd9-faad-4153-8f87-dc5b2a79a0c4.png)
 
+## Module usage
+
+Using `qobuz-dl` as a module is really easy. Basically, the only thing you need is `QobuzDL` from `core`.
+
+```python
+import logging
+from qobuz_dl.core import QobuzDL
+
+logging.basicConfig(level=logging.INFO)
+
+email = "your@email.com"
+password = "your_password"
+
+qobuz = QobuzDL()
+qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
+qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+
+qobuz.handle_url("https://play.qobuz.com/album/va4j3hdlwaubc")
+```
+
+Attributes, methods and parameters have been named as self-explanatory as possible.
 
 ## Fun Fact
+
 I use this program daily!
+
+## Disclaimer
+
+- This tool was written for educational purposes. I will not be responsible if you use this program in bad faith. By using it, you are accepting the [Qobuz API Terms of Use](https://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf).
+- `qobuz-dl` is not affiliated with Qobuz
