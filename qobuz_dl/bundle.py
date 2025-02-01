@@ -5,8 +5,6 @@ from collections import OrderedDict
 
 from requests import Session
 
-# Modified code based on DashLt's spoofbuz
-
 logger = logging.getLogger(__name__)
 
 _SEED_TIMEZONE_REGEX = re.compile(
